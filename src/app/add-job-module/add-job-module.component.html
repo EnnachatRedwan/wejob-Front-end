@@ -1,0 +1,64 @@
+<div
+  [ngClass]="jobFormOpen ? 'visible' : 'invisible'"
+  class="w-full h-full fixed top-0 left-0 bg-gray-500 bg-opacity-70 flex justify-center items-center"
+>
+  <form
+    #jobForm="ngForm"
+    (ngSubmit)="addJob(jobForm)"
+    class="bg-white w-full md:max-w-screen-sm flex flex-col items-stretch gap-6 p-4 rounded-xl mx-3"
+  >
+    <div class="text-3xl font-bold text-center">
+      <span class="text-green-500">Post</span> Job
+    </div>
+    <div class="text-lg">
+      <h3 class="my-2">Title:</h3>
+      <input
+        class="w-full border-b-2 border-gray-200 focus:border-green-400 py-2"
+        required="true"
+        placeholder="Title"
+        type="text"
+        name="title"
+        id="title"
+        ngModel
+      />
+    </div>
+    <div class="text-lg">
+      <h3 class="my-2">Location:</h3>
+      <input
+        class="w-full border-b-2 border-gray-200 focus:border-green-400 py-2"
+        placeholder="Location"
+        required
+        type="text"
+        name="location"
+        id="location"
+        ngModel
+      />
+    </div>
+    <div class="text-lg">
+      <h3 class="my-2">Description:</h3>
+      <textarea
+        ngModel
+        required="true"
+        class="w-full max-h-72 h-40 border-2 border-gray-200 focus:border-green-400 p-2 "
+        name="descr"
+        id="descr"
+      ></textarea>
+    </div>
+    <div class="flex justify-center gap-4">
+      <button
+        type="button"
+        class="text-lg text-white bg-red-500 px-5 py-2 rounded-lg"
+        (click)="closeModule()"
+      >
+        Cancel
+      </button>
+      <button
+        [disabled]="jobForm.invalid"
+        type="submit"
+        class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
+      >
+        Add job
+      </button>
+    </div>
+  </form>
+</div>

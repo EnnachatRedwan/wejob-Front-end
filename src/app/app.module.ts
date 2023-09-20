@@ -3,16 +3,33 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { JobsComponent } from './jobs/jobs.component';
+import { JobService } from './job.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { JobComponent } from './job/job.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddJobModuleComponent } from './add-job-module/add-job-module.component';
+import { DeleteJobModuleComponent } from './delete-job-module/delete-job-module.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    JobsComponent,
+    JobComponent,
+    NavbarComponent,
+    AddJobModuleComponent,
+    DeleteJobModuleComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    JobService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

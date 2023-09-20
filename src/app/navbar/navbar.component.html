@@ -1,0 +1,23 @@
+<header class="w-full bg-white shadow sticky left-0 top-0">
+  <div
+    class="w-full lg:w-10/12 px-4 flex justify-between align-center mx-auto p-2"
+  >
+    <div class="text-3xl font-bold">
+      <span class="text-green-500">ENNACHAT</span> JOBS
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <button
+            (click)="openJobFormModule()"
+            class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
+          >
+            Post job
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <app-add-job-module [jobFormOpen]="jobFormOpen" (closeJobFormModule)="closeJobFormModule()" />
+  
+</header>

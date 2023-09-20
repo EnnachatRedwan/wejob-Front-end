@@ -1,0 +1,25 @@
+<div
+  class="w-full h-full fixed top-0 left-0 bg-gray-500 bg-opacity-70 flex justify-center items-center"
+>
+  <div
+    class="bg-white w-full md:max-w-screen-sm flex flex-col items-stretch gap-6 p-4 rounded-xl mx-3"
+  >
+    <h2 class="text-xl text-center py-2">Delete {{ jobToDelete?.title }} ?</h2>
+    <div class="flex justify-center gap-4">
+      <button
+        type="button"
+        class="text-lg text-white bg-red-500 px-5 py-2 rounded-lg"
+        (click)="closeFormHandler()"
+      >
+        No
+      </button>
+      <button
+        type="submit"
+        class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
+        (click)="deleteJobHandler()"
+      >
+        Yes
+      </button>
+    </div>
+  </div>
+</div>

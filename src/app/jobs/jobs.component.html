@@ -1,0 +1,16 @@
+<div
+  class="w-full max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+>
+  <app-job
+    *ngFor="let job of getJobs()"
+    [job]="job"
+    class="p-5 m-2 bg-white shadow-lg flex flex-col justify-between rounded-lg h-40"
+    (openJobDeleteForm)="openJobDeleteForm($event)"
+  ></app-job>
+  <app-delete-job-module
+    *ngIf="jobDeleteFormOpen"
+    [jobToDelete]="jobToDelete"
+    (closeJobDeleteForm)="closeJobDeleteForm()"
+    (deleteJob)="deleteJob($event)"
+  />
+</div>
