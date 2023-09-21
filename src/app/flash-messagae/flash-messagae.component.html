@@ -1,0 +1,11 @@
+<div
+  id="flash-message"
+  class="fixed left-0 w-full text-center text-white bg-green-500 p-2"
+  [ngClass]="{
+    flash: flashMessageService.show,
+    'bg-green-500': flashMessageService.flashMessage?.type === 'SUCCESS',
+    'bg-red-500': flashMessageService.flashMessage?.type === 'ERROR'
+  }"
+>
+  <p>{{ flashMessageService.flashMessage?.message }}</p>
+</div>

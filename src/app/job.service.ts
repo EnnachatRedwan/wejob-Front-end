@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Job } from './jobs/Job';
 import { Observable } from 'rxjs';
+import { FlashMessageService } from './flash-message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +13,20 @@ export class JobService {
 
   jobs: Job[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private flashMessageService: FlashMessageService
+  ) {}
 
   public fetchJobs(): void {
-    this.http
-      .get<Job[]>(`${this.baseUrl}/jobs`)
-      .subscribe((jobsResponse) => (this.jobs = jobsResponse));
+    this.http.get<Job[]>(`${this.baseUrl}/jobs`).subscribe(
+      (jobsResponse) => (this.jobs = jobsResponse),
+      (err) =>
+        this.flashMessageService.showMessage({
+          message: `Opss error, check your internet`,
+          type: 'ERROR',
+        })
+    );
   }
 
   public fetchJob(id: Number): Observable<Job> {
@@ -33,8 +42,16 @@ export class JobService {
         this.jobs.forEach((j) =>
           j.id === -1 ? (this.jobs[this.jobs.indexOf(j)] = responseJob) : null
         );
+        this.flashMessageService.showMessage({
+          message: 'Job added successfully',
+          type: 'SUCCESS',
+        });
       },
       (err) => {
+        this.flashMessageService.showMessage({
+          message: `job was not added`,
+          type: 'ERROR',
+        });
         this.jobs.forEach((j) =>
           j.id === -1 ? this.jobs.splice(this.jobs.indexOf(j), 1) : null
         );
@@ -49,15 +66,23 @@ export class JobService {
         jobToEditInedx = this.jobs.indexOf(j);
       }
     });
-    let oldJob: Job = {...this.jobs[jobToEditInedx]};
+    let oldJob: Job = { ...this.jobs[jobToEditInedx] };
 
     this.jobs[jobToEditInedx] = job;
 
     this.http.put<Job>(`${this.baseUrl}/jobs`, job).subscribe(
-      (_) => {},
       (_) => {
-        console.log(oldJob);
+        this.flashMessageService.showMessage({
+          message: 'Job edited successfully',
+          type: 'SUCCESS',
+        });
+      },
+      (_) => {
         this.jobs[jobToEditInedx] = oldJob;
+        this.flashMessageService.showMessage({
+          message: `job was not edited`,
+          type: 'ERROR',
+        });
       }
     );
   }
@@ -71,10 +96,20 @@ export class JobService {
     });
     let jobToDelete: Job = this.jobs[jobToDeleteInedx];
     this.jobs = [...this.jobs].filter((job) => job.id !== id);
+
     this.http.delete<void>(`${this.baseUrl}/jobs/${id}`).subscribe(
-      () => {},
+      () => {
+        this.flashMessageService.showMessage({
+          message: 'Job deleted successfully',
+          type: 'SUCCESS',
+        });
+      },
       (err) => {
         this.jobs.splice(jobToDeleteInedx, 0, jobToDelete);
+        this.flashMessageService.showMessage({
+          message: `job was not deleted`,
+          type: 'ERROR',
+        });
       }
     );
   }

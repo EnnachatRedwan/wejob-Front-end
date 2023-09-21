@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddJobModuleComponent } from './add-job-module/add-job-module.component';
 import { DeleteJobModuleComponent } from './delete-job-module/delete-job-module.component';
 import { EditJobModuleComponent } from './edit-job-module/edit-job-module.component';
+import { FlashMessagaeComponent } from './flash-messagae/flash-messagae.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditJobModuleComponent } from './edit-job-module/edit-job-module.compon
     NavbarComponent,
     AddJobModuleComponent,
     DeleteJobModuleComponent,
-    EditJobModuleComponent
+    EditJobModuleComponent,
+    FlashMessagaeComponent
   ],
   imports: [
     BrowserModule,

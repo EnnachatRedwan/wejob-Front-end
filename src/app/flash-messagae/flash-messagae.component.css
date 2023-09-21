@@ -1,0 +1,15 @@
+#flash-message{
+    bottom: -100%;
+    transition: .1s;
+}
+
+.flash{
+    animation: animateFlash 4s;
+}
+
+@keyframes animateFlash{
+
+    20%,80%{
+        bottom: 0;
+    }
+}
