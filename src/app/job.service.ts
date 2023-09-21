@@ -42,9 +42,24 @@ export class JobService {
     );
   }
 
-  public editJob(job: Job): Observable<Job> {
-    this.jobs.push(job);
-    return this.http.put<Job>(`${this.baseUrl}/jobs`, job);
+  public editJob(job: Job): void {
+    let jobToEditInedx = -1;
+    this.jobs.forEach((j) => {
+      if (j.id === job.id) {
+        jobToEditInedx = this.jobs.indexOf(j);
+      }
+    });
+    let oldJob: Job = {...this.jobs[jobToEditInedx]};
+
+    this.jobs[jobToEditInedx] = job;
+
+    this.http.put<Job>(`${this.baseUrl}/jobs`, job).subscribe(
+      (_) => {},
+      (_) => {
+        console.log(oldJob);
+        this.jobs[jobToEditInedx] = oldJob;
+      }
+    );
   }
 
   public deleteJob(id: Number): void {

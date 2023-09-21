@@ -11,6 +11,7 @@ import { JobComponent } from './job/job.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddJobModuleComponent } from './add-job-module/add-job-module.component';
 import { DeleteJobModuleComponent } from './delete-job-module/delete-job-module.component';
+import { EditJobModuleComponent } from './edit-job-module/edit-job-module.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DeleteJobModuleComponent } from './delete-job-module/delete-job-module.
     JobComponent,
     NavbarComponent,
     AddJobModuleComponent,
-    DeleteJobModuleComponent
+    DeleteJobModuleComponent,
+    EditJobModuleComponent
   ],
   imports: [
     BrowserModule,

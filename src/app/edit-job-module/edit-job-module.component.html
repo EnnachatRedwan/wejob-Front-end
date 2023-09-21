@@ -1,9 +1,10 @@
 <div
   class="w-full h-full fixed top-0 left-0 bg-gray-500 bg-opacity-70 flex justify-center items-center"
+  *ngIf="jobToEdit"
 >
   <form
     #jobForm="ngForm"
-    (ngSubmit)="addJob(jobForm)"
+    (ngSubmit)="editJobHandler(jobForm)"
     class="bg-white w-full md:max-w-screen-sm flex flex-col items-stretch gap-6 p-4 rounded-xl mx-3"
   >
     <div class="text-3xl font-bold text-center">
@@ -19,6 +20,7 @@
         name="title"
         id="title"
         ngModel
+        [(ngModel)]="jobToEdit.title"
       />
     </div>
     <div class="text-lg">
@@ -31,6 +33,7 @@
         name="location"
         id="location"
         ngModel
+        [(ngModel)]="jobToEdit.location"
       />
     </div>
     <div class="text-lg">
@@ -38,9 +41,10 @@
       <textarea
         ngModel
         required="true"
-        class="w-full max-h-72 h-40 border-2 border-gray-200 focus:border-green-400 p-2 "
+        class="w-full max-h-72 h-40 border-2 border-gray-200 focus:border-green-400 p-2"
         name="descr"
         id="descr"
+        [(ngModel)]="jobToEdit.descr"
       ></textarea>
     </div>
     <div class="flex justify-center gap-4">
@@ -56,7 +60,7 @@
         type="submit"
         class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
       >
-        Add job
+        Edit
       </button>
     </div>
   </form>

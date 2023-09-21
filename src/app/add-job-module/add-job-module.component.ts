@@ -10,9 +10,6 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-job-module.component.css'],
 })
 export class AddJobModuleComponent {
-  @Input()
-  jobFormOpen: boolean = false;
-
   @Output()
   closeJobFormModule = new EventEmitter();
 

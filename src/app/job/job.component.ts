@@ -13,7 +13,14 @@ export class JobComponent {
   @Output()
   openJobDeleteForm = new EventEmitter();
 
-  openDeletFormHandler(){
+  openDeleteFormHandler(){
     this.openJobDeleteForm.emit(this.job);
+  }
+
+  @Output()
+  openJobEditForm = new EventEmitter();
+
+  openEditFormHandler(){
+    this.openJobEditForm.emit(this.job);
   }
 }

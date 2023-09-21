@@ -18,6 +18,8 @@
       </ul>
     </nav>
   </div>
-  <app-add-job-module [jobFormOpen]="jobFormOpen" (closeJobFormModule)="closeJobFormModule()" />
-  
+  <app-add-job-module
+    *ngIf="jobFormOpen"
+    (closeJobFormModule)="closeJobFormModule()"
+  />
 </header>

@@ -10,19 +10,6 @@ import { Job } from './Job';
 export class JobsComponent implements OnInit {
   constructor(private jobService: JobService) {}
 
-  jobDeleteFormOpen = false;
-
-  openJobDeleteForm(job : Job) {
-    this.jobToDelete = job;
-    this.jobDeleteFormOpen = true;
-  }
-  closeJobDeleteForm() {
-    this.jobDeleteFormOpen = false;
-    this.jobToDelete=undefined;
-  }
-
-  jobToDelete?: Job= undefined;
-
   ngOnInit(): void {
     this.jobService.fetchJobs();
   }
@@ -31,8 +18,40 @@ export class JobsComponent implements OnInit {
     return this.jobService.jobs;
   }
 
+
+  jobToDelete?: Job = undefined;
+
+  jobDeleteFormOpen = false;
+
+  openJobDeleteForm(job: Job) {
+    this.jobToDelete = job;
+    this.jobDeleteFormOpen = true;
+  }
+  closeJobDeleteForm() {
+    this.jobToDelete = undefined;
+    this.jobDeleteFormOpen = false;
+  }
+
   deleteJob(id: Number) {
-    this.closeJobDeleteForm()
+    this.closeJobDeleteForm();
     this.jobService.deleteJob(id);
+  }
+
+  jobToEdit?: Job = undefined;
+
+  jobEditFormOpen = false;
+
+  openJobEditForm(job: Job) {
+    this.jobToEdit = {...job};
+    this.jobEditFormOpen = true;
+  }
+  closeJobEditForm() {
+    this.jobToEdit = undefined;
+    this.jobEditFormOpen = false;
+  }
+
+  editJob(job: Job) {
+    this.closeJobEditForm();
+    this.jobService.editJob(job);
   }
 }
