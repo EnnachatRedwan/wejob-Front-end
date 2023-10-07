@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Job } from './jobs/Job';
@@ -9,23 +9,33 @@ import { FlashMessageService } from './flash-message.service';
   providedIn: 'root',
 })
 export class JobService {
-  baseUrl = 'http://localhost:8080';
+  baseUrl = 'https://5n581194-8080.uks1.devtunnels.ms';
 
   jobs: Job[] = [];
 
   constructor(
     private http: HttpClient,
     private flashMessageService: FlashMessageService
-  ) {}
+  ) {
+    // setInterval(() => this.fetchJobs(), 1000);
+  }
+
+  public isLoading = false;
 
   public fetchJobs(): void {
+    this.isLoading = true;
     this.http.get<Job[]>(`${this.baseUrl}/jobs`).subscribe(
-      (jobsResponse) => (this.jobs = jobsResponse),
-      (err) =>
+      (jobsResponse) => {
+        this.jobs = jobsResponse;
+        this.isLoading = false;
+      },
+      (err) => {
         this.flashMessageService.showMessage({
           message: `Opss error, check your internet`,
           type: 'ERROR',
-        })
+        });
+        this.isLoading=false;
+      }
     );
   }
 

@@ -13,6 +13,9 @@ import { AddJobModuleComponent } from './add-job-module/add-job-module.component
 import { DeleteJobModuleComponent } from './delete-job-module/delete-job-module.component';
 import { EditJobModuleComponent } from './edit-job-module/edit-job-module.component';
 import { FlashMessagaeComponent } from './flash-messagae/flash-messagae.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -23,17 +26,13 @@ import { FlashMessagaeComponent } from './flash-messagae/flash-messagae.componen
     AddJobModuleComponent,
     DeleteJobModuleComponent,
     EditJobModuleComponent,
-    FlashMessagaeComponent
+    FlashMessagaeComponent,
+    JobDetailsComponent,
+    NotFoundComponent,
+    SignUpComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    JobService,
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [JobService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

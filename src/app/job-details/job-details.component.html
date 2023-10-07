@@ -1,0 +1,13 @@
+<div
+  *ngIf="this.isLoading"
+  class="flex justify-center items-center w-full p-10 text-3xl font-semibold text-green-500"
+>
+  <h1>Loading...</h1>
+</div>
+<div *ngIf="!error && !isLoading" class="p-5 m-2 bg-white shadow-lg rounded-lg">
+  <h1 class="text-center text-3xl text-green-500 font-semibold truncate">
+    {{ job.title }}
+  </h1>
+  <h3 class="text-xl p-3 truncate">{{ job.location }}</h3>
+  <p class="text-gray-500 p-2 whitespace-break-spaces">{{ job.descr }}</p>
+</div>

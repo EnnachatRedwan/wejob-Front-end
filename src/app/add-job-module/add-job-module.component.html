@@ -4,7 +4,7 @@
   <form
     #jobForm="ngForm"
     (ngSubmit)="addJob(jobForm)"
-    class="bg-white w-full md:max-w-screen-sm flex flex-col items-stretch gap-6 p-4 rounded-xl mx-3"
+    class="bg-white max-h-full w-full md:max-w-screen-sm flex flex-col items-stretch gap-6 p-4 rounded-xl mx-3 overflow-y-scroll no-scrollbar"
   >
     <div class="text-3xl font-bold text-center">
       <span class="text-green-500">Post</span> Job
@@ -38,25 +38,25 @@
       <textarea
         ngModel
         required="true"
-        class="w-full max-h-72 h-40 border-2 border-gray-200 focus:border-green-400 p-2 "
+        class="w-full max-h-72 h-40 border-2 border-gray-200 focus:border-green-400 p-2"
         name="descr"
         id="descr"
       ></textarea>
     </div>
     <div class="flex justify-center gap-4">
       <button
+        [disabled]="jobForm.invalid"
+        type="submit"
+        class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
+      >
+        Add
+      </button>
+      <button
         type="button"
         class="text-lg text-white bg-red-500 px-5 py-2 rounded-lg"
         (click)="closeModule()"
       >
         Cancel
-      </button>
-      <button
-        [disabled]="jobForm.invalid"
-        type="submit"
-        class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
-      >
-        Add job
       </button>
     </div>
   </form>

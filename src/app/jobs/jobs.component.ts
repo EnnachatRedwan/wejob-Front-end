@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { JobService } from '../job.service';
 import { Job } from './Job';
 
@@ -7,8 +7,8 @@ import { Job } from './Job';
   templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.css'],
 })
-export class JobsComponent implements OnInit {
-  constructor(private jobService: JobService) {}
+export class JobsComponent {
+  constructor(public jobService: JobService) {}
 
   ngOnInit(): void {
     this.jobService.fetchJobs();
@@ -18,6 +18,10 @@ export class JobsComponent implements OnInit {
     return this.jobService.jobs;
   }
 
+  getJobService() : JobService{
+    return this.jobService;
+    this.jobService.isLoading
+  }
 
   jobToDelete?: Job = undefined;
 
@@ -42,7 +46,7 @@ export class JobsComponent implements OnInit {
   jobEditFormOpen = false;
 
   openJobEditForm(job: Job) {
-    this.jobToEdit = {...job};
+    this.jobToEdit = { ...job };
     this.jobEditFormOpen = true;
   }
   closeJobEditForm() {

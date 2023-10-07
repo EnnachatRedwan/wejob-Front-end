@@ -43,7 +43,9 @@
   </button>
 </div>
 <div>
-  <h1 class="text-xl py-1 truncate">{{ job.title }}</h1>
+  <a [routerLink]="['/jobs', job.id]">
+    <h1 class="text-xl py-1 truncate">{{ job.title }}</h1></a
+  >
   <p class="text-gray-400 truncate">{{ job.descr }}</p>
 </div>
 <div class="text-green-400 font-semibold truncate">{{ job.location }}</div>

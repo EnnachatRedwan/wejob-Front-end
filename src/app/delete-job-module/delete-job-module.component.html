@@ -7,18 +7,18 @@
     <h2 class="text-xl text-center py-2">Delete {{ jobToDelete?.title }} ?</h2>
     <div class="flex justify-center gap-4">
       <button
-        type="button"
-        class="text-lg text-white bg-red-500 px-5 py-2 rounded-lg"
-        (click)="closeFormHandler()"
-      >
-        No
-      </button>
-      <button
         type="submit"
-        class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
+        class="text-lg text-white bg-red-500 px-5 py-2 rounded-lg"
         (click)="deleteJobHandler()"
       >
         Yes
+      </button>
+      <button
+        type="button"
+        class="text-lg text-white bg-green-500 px-5 py-2 rounded-lg"
+        (click)="closeFormHandler()"
+      >
+        No
       </button>
     </div>
   </div>

@@ -1,12 +1,15 @@
+  <div *ngIf="this.jobService.isLoading" class="flex justify-center items-center w-full p-10 text-3xl font-semibold text-green-500">
+    <h1  >Loading...</h1>
+  </div>
 <div
-  class="w-full max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+  class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
 >
   <app-job
     *ngFor="let job of getJobs()"
     [job]="job"
     class="p-5 m-2 bg-white shadow-lg flex flex-col justify-between rounded-lg h-40"
     (openJobDeleteForm)="openJobDeleteForm($event)"
-    (openJobEditForm)="(openJobEditForm($event))"
+    (openJobEditForm)="openJobEditForm($event)"
   />
   <app-delete-job-module
     *ngIf="jobDeleteFormOpen"
